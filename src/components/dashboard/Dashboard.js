@@ -9,12 +9,8 @@ class Dashboard extends Component{
     
     return (
       <div className="dashboard container">
-            <div className="row">
-              <div className="col s12 m6">
-                <MovieList movies={movies}/>
-              </div>
-            </div>
-          </div>
+        <MovieList movies={movies}/>
+      </div>
     );
   }
 

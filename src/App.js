@@ -13,11 +13,11 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <Navbar/>
-          <Switch>
-            <Route exact path="/" component={Dashboard} />
-            <Route exact path="/create" component={CreateMovie} />
-            <Route exact path="/next" component={Next} />
-          </Switch>
+            <Switch>
+              <Route exact path="/" component={Dashboard} />
+              <Route exact path="/create" component={CreateMovie} />
+              <Route exact path="/next" component={Next} />
+            </Switch>
         </div>
       </BrowserRouter>
     );
