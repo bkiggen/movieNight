@@ -10,6 +10,10 @@ const initState = {
 }
 
 const movieReducer = (state = initState, action) => {
+  switch (action.type) {
+    case 'CREATE_MOVIE':
+      console.log('created movie', action.movie);
+  }
   return state;
 };
 
