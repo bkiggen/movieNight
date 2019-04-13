@@ -14,6 +14,7 @@ const MovieDetails = props => {
           <div className="card-content">
             <span className="card-title">{movie.title}</span>
             <p>Chosen by: {movie.chooser}</p>
+            <p>Viewing Date: {movie.createdAt.seconds}</p>
           </div>
           <div className="card-action grey lighten-4">
             <p>Release Year: {movie.year}</p>

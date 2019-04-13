@@ -3,10 +3,7 @@ export const createMovie = (movie) => {
     const firestore = getFirestore();
     firestore.collection('movies').add({
       ...movie,
-      title: "Ben Hur",
-      year: 1984,
-      createdAt: new Date(), 
-      chooser: 'Ben'
+      createdAt: new Date()
     }).then(()=> {
       dispatch({ type: 'CREATE_MOVIE', movie });
     }).catch((err)=> {
