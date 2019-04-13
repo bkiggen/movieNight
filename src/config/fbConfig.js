@@ -1,4 +1,4 @@
-import Firebase from 'firebase/app';
+import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
@@ -13,6 +13,6 @@ import 'firebase/auth';
   };
   
   firebase.initializeApp(config);
-  firebase.firestore().settings({ timestampInSnapshots: true});
+  firebase.firestore().settings({ timestampsInSnapshots: true});
   
   export default firebase;
