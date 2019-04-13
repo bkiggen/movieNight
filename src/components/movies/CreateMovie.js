@@ -1,20 +1,24 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { createMovie } from '../../store/actions/movieActions';
+import { connect } from 'react-redux';
 
 class CreateMovie extends Component {
     state = {
         title: '',
-        year: 0
+        year: 0, 
+        chooser: ''
     }
 
-    handleChange = (event) => {
+    handleChange = (e) => {
+      console.log(e.target.value);
       this.setState({
-        [event.target.id]: event.target.value
+        [e.target.id]: e.target.value
       })
     }
     
-    handleSubmit = (event) => {
-      event.preventDefault();
-      console.log(this.state);
+    handleSubmit = (e) => {
+      e.preventDefault();
+      this.props.createMovie(this.state)
     }
 
     render() {
@@ -30,6 +34,10 @@ class CreateMovie extends Component {
                         <label htmlFor="year">Year</label>
                         <input id="year" onChange={this.handleChange}></input>
                     </div>
+                    <div className="input-field">
+                        <label htmlFor="chooser">Chooser</label>
+                        <input id="chooser" onChange={this.handleChange}></input>
+                    </div>
                     
                     <div className="input-field">
                         <button className="btn pink lighten-1 z-depth-0">Add Movie</button>
@@ -40,4 +48,10 @@ class CreateMovie extends Component {
     }
 }
 
-export default CreateMovie
+const mapDispatchToProps = (dispatch) => {
+  return {
+    createMovie: (movie) => dispatch(createMovie(movie))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(CreateMovie)
