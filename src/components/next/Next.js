@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { updateNext } from '../../store/actions/movieActions';
 import {connect} from 'react-redux';
+import {compose} from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
 
 class Next extends Component {
   state = {
-    leftToChoose: [ 'Ben', 'Hannah', 'Greg', 'Andrew', 'Brianna', 'Amanda'],
+    leftToChoose: [],
     nextChooser: ''
   }
   
@@ -15,11 +17,16 @@ class Next extends Component {
     if (nameArray.length < 1){
       nameArray = [ 'Ben', 'Hannah', 'Greg', 'Andrew', 'Brianna', 'Amanda']
     }
-    this.setState({
-      leftToChoose: ['nameArray'],
-      nextChooser: 'ben',
+
+    this.setState((previousState, currentProps) => {
+      return {
+        ...previousState,
+        leftToChoose: nameArray,
+        nextChooser: selectedChooser
+      }
     })
     console.log(this.state);
+
     this.props.updateNext(this.state);
   }
   
@@ -30,16 +37,23 @@ class Next extends Component {
         <h1>Left to Choose:</h1>
         {this.state.leftToChoose && this.state.leftToChoose.map(chooser => {
           return (
-            <span key={chooser}>| {chooser} |</span>
+            <span key={chooser}> | {chooser} | </span>
           )
         })}
       </div>
       <button type="button" onClick={this.handleClick}>Press!</button>
       <div className="card">
-        <h1><span>{this.state.selectedPerson}</span> is next!</h1>
+        <h1><span>{this.state.nextChooser}</span> is next!</h1>
       </div>
     </div>
     )
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    leftToChoose: state.firestore.nextChooser.leftToChoose,
+    nextChooser: state.firebase.nextChooser.nextChooser 
   }
 }
 
