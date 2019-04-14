@@ -11,6 +11,7 @@ class Next extends Component {
   }
   
   handleClick = () => {
+    console.log(this.state);
     let nameArray = this.state.leftToChoose;
     let randomNumber = Math.floor(Math.random() * Math.floor(nameArray.length));
     let selectedChooser = nameArray.splice(randomNumber, 1);
@@ -50,10 +51,14 @@ class Next extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+  console.log(ownProps);
+  const id = ownProps.match.params.id;
+  const nextChooser = state.firestore.data.nextChooser[id].nextChooser;
+  console.log(nextChooser);
   return {
-    leftToChoose: state.firestore.nextChooser.leftToChoose,
-    nextChooser: state.firebase.nextChooser.nextChooser 
+    leftToChoose: 'fds',
+    nextChooser:  'sdf'
   }
 }
 
@@ -64,4 +69,11 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Next);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect([
+    {
+      collection: 'nextChooser'
+    }
+  ])
+)(Next);
