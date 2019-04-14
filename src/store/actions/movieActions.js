@@ -11,3 +11,14 @@ export const createMovie = (movie) => {
     })
   }
 };
+
+export const updateNext = (chooser) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+    console.log(chooser);
+    firestore.collection('nextChooser').doc('fPDChgaiSVrAnr9s4boD').set({
+      nextChooser: chooser.nextChooser,
+      selectedPerson: chooser.nextChooser
+    })
+  }
+}
