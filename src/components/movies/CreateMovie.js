@@ -18,7 +18,8 @@ class CreateMovie extends Component {
     
     handleSubmit = (e) => {
       e.preventDefault();
-      this.props.createMovie(this.state)
+      this.props.createMovie(this.state);
+      this.props.history.push('/');
     }
 
     render() {

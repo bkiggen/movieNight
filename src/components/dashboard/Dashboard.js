@@ -18,7 +18,6 @@ class Dashboard extends Component{
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     movies: state.firestore.ordered.movies
   }
@@ -27,6 +26,6 @@ const mapStateToProps = (state) => {
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
-    { collection: 'movies' }
+    { collection: 'movies', orderBy: ['year', 'desc'] }
   ])
 )(Dashboard);

@@ -16,10 +16,14 @@ export const updateNext = (chooser) => {
   console.log(chooser);
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
-    console.log(chooser);
+    console.log('action: ' + chooser);
     firestore.collection('nextChooser').doc('fPDChgaiSVrAnr9s4boD').set({
       nextChooser: chooser.nextChooser,
       leftToChoose: chooser.leftToChoose
+    }).then(() => {
+      dispatch({ type: 'UPDATE_NEXT', chooser});
+    }).catch((err) => {
+      dispatch({ type: 'UPDATE_NEXT_ERROR', err})
     })
   }
 }

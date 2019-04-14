@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
+import { Link } from 'react-router-dom'
 
 const MovieDetails = props => {
 
@@ -18,6 +19,7 @@ const MovieDetails = props => {
           </div>
           <div className="card-action grey lighten-4">
             <p>Release Year: {movie.year}</p>
+            <Link to="/">Home</Link>
           </div>
         </div>
       </div>

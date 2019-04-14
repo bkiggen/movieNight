@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import { updateNext } from '../../store/actions/movieActions';
-import {connect} from 'react-redux';
-import {compose} from 'redux';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 
-class Next extends Component {
+
+class Next extends Component {  
   state = {
-    leftToChoose: [],
-    nextChooser: ''
+      nextChooser: '',
+      leftToChoose: ['Ben', 'Greg', 'Hannah', 'Andrew', 'Amanda', 'Brianna']
   }
   
   handleClick = () => {
-    console.log(this.state);
+
     let nameArray = this.state.leftToChoose;
+        
     let randomNumber = Math.floor(Math.random() * Math.floor(nameArray.length));
     let selectedChooser = nameArray.splice(randomNumber, 1);
-    if (nameArray.length < 1){
-      nameArray = [ 'Ben', 'Hannah', 'Greg', 'Andrew', 'Brianna', 'Amanda']
-    }
-
+    console.log(selectedChooser);
+    
     this.setState((previousState, currentProps) => {
       return {
         ...previousState,
@@ -26,41 +26,36 @@ class Next extends Component {
         nextChooser: selectedChooser
       }
     })
-    console.log(this.state);
-
-    this.props.updateNext(this.state);
+    this.props.updateNext({
+      nextChooser: selectedChooser,
+      leftToChoose: nameArray
+    });
   }
   
   render() {
+    const { nextChooser } = this.props;
+
     return (
-    <div>
-      <div className="card">
-        <h1>Left to Choose:</h1>
-        {this.state.leftToChoose && this.state.leftToChoose.map(chooser => {
-          return (
-            <span key={chooser}> | {chooser} | </span>
-          )
-        })}
+      <div>
+        <div className="card">
+          <h1>Left to Choose: {this.state.leftToChoose}</h1>
+        </div>
+
+        <button type="button" onClick={this.handleClick}>Press!</button>
+        <div className="card">
+          <h1><span>{this.state.nextChooser}</span> is next!</h1>
+        </div>
       </div>
-      <button type="button" onClick={this.handleClick}>Press!</button>
-      <div className="card">
-        <h1><span>{this.state.nextChooser}</span> is next!</h1>
-      </div>
-    </div>
     )
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  console.log(ownProps);
-  const id = ownProps.match.params.id;
-  const nextChooser = state.firestore.data.nextChooser[id].nextChooser;
-  console.log(nextChooser);
+const mapStateToProps = (state) => {
   return {
-    leftToChoose: 'fds',
-    nextChooser:  'sdf'
+    nextChooser:  state.firestore.ordered.nextChooser
   }
 }
+
 
 
 const mapDispatchToProps = (dispatch) => {
@@ -72,8 +67,7 @@ const mapDispatchToProps = (dispatch) => {
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   firestoreConnect([
-    {
-      collection: 'nextChooser'
-    }
+    { collection: 'nextChooser' }
   ])
 )(Next);
+
