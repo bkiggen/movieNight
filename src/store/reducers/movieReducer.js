@@ -17,6 +17,12 @@ const movieReducer = (state = initState, action) => {
     case 'CREATE_MOVIE_ERROR':
       console.log('create movie error', action.err);
       return state;
+    case 'UPDATE_NEXT':
+      console.log('update next', action.chooser);
+      return state;
+    case 'UPDATE_NEXT_ERROR':
+      console.log('update next error', action.err);
+      return state;
     default:
       return state;
   }

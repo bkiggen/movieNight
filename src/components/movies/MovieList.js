@@ -3,12 +3,13 @@ import MovieSummary from './MovieSummary';
 import { Link } from 'react-router-dom';
 
 const MovieList = ({movies}) => {
+  console.log(movies);
   return (
     <div className="movieList section">
       {movies && movies.map(movie => {
         return (
           <Link to={'/movie/' + movie.id} key={movie.id}>
-            <MovieSummary movie={movie} />
+          <MovieSummary movie={movie} />
           </Link>
         )
       })}
@@ -17,3 +18,5 @@ const MovieList = ({movies}) => {
 }
 
 export default MovieList;
+
+
