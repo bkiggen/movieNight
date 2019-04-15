@@ -7,39 +7,59 @@ import { Link } from 'react-router-dom';
 import MovieQuery from '../movies/MovieQuery';
 
 class MovieDetails extends Component {
-
-  componentDidUpdate(){
-    const movie = this.props.movie
-    let movieQuery = new MovieQuery();
-    console.log(movie);
-    let promise = movieQuery.movieQuery(movie.title, movie.year);
-    promise.then(function(response){
-      let body = JSON.parse(response);
-      console.log(body);
-    })
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoaded: false,
+      image: '', 
+      title: ''
+    };
+    this.fetchData = this.fetchData.bind(this)
   }
+
+  componentWillReceiveProps(nextProps){
+    // if(!_isEqual(nextProps, this.state)){
+    //         this.setState(nextProps);
+    //     }
+    // const { movie } = this.props;
+    // console.log(movie);
+    console.log(nextProps.movie.title);
+    this.fetchData(nextProps.movie);
+    
+  }
+  
+  fetchData(movie){
+    fetch(`http://www.omdbapi.com/?t=${movie.title}&y=${movie.year}&apikey=102a2cf2`)
+    .then(res => res.json())
+    .then(
+      (result) => {
+        this.setState({
+          isLoaded: true,
+          image: result.Poster,
+          title: result.Title
+        })
+      }
+    )
+  }
+
     conditionallyRenderContent = () => {
       const movie = this.props.movie
-      if(movie){
+      if(this.state.isLoaded){
         return (
           <div className="container section movie-details">
           <div className="card z-depth-0">
           <div className="card-content">
-          <span className="card-title">{movie.title}</span>
+          <span className="card-title">{this.state.title}</span>
           <p>Chosen by: {movie.chooser}</p>
           <p>Viewing Date: {movie.createdAt.seconds}</p>
           </div>
+          <img src={`${this.state.image}`} />
           <div className="card-action grey lighten-4">
           <p>Release Year: {movie.year}</p>
           <Link to="/">Home</Link>
           </div>
           </div>
           <h1>API RESPONSE:</h1>
-          <div>
-          
-          
-          
-          </div>
           </div>
         )
       } else {
