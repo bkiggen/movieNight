@@ -12,7 +12,6 @@ class Next extends Component {
   }
   
   handleClick = () => {
-
     let nameArray = this.state.leftToChoose;
         
     let randomNumber = Math.floor(Math.random() * Math.floor(nameArray.length));
