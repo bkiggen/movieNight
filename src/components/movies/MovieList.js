@@ -3,7 +3,7 @@ import MovieSummary from './MovieSummary';
 import { Link } from 'react-router-dom';
 
 const MovieList = ({movies}) => {
-  console.log(movies);
+
   return (
     <div className="movieList section">
       {movies && movies.map(movie => {
@@ -18,5 +18,3 @@ const MovieList = ({movies}) => {
 }
 
 export default MovieList;
-
-
