@@ -18,11 +18,6 @@ class MovieDetails extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    // if(!_isEqual(nextProps, this.state)){
-    //         this.setState(nextProps);
-    //     }
-    // const { movie } = this.props;
-    // console.log(movie);
     console.log(nextProps.movie.title);
     this.fetchData(nextProps.movie);
     
@@ -59,7 +54,6 @@ class MovieDetails extends Component {
           <Link to="/">Home</Link>
           </div>
           </div>
-          <h1>API RESPONSE:</h1>
           </div>
         )
       } else {
