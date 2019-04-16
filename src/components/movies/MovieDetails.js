@@ -24,7 +24,7 @@ class MovieDetails extends Component {
   }
   
   fetchData(movie){
-    fetch(`http://www.omdbapi.com/?t=${movie.title}&y=${movie.year}&apikey=102a2cf2`)
+    fetch(`https://www.omdbapi.com/?t=${movie.title}&y=${movie.year}&apikey=102a2cf2`)
     .then(res => res.json())
     .then(
       (result) => {
