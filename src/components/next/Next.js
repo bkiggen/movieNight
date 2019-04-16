@@ -8,14 +8,22 @@ import { firestoreConnect } from 'react-redux-firebase';
 class Next extends Component {  
   state = {
       nextChooser: '',
-      leftToChoose: ['Ben', 'Greg', 'Hannah', 'Andrew', 'Amanda', 'Brianna']
+      leftToChoose: [],
+      isLoaded: false, 
+  }
+  
+  componentWillReceiveProps(nextProps){
+    console.log(nextProps.nextChooser[0].leftToChoose);
+    this.setState({
+      isLoaded: true,
+      leftToChoose: nextProps.nextChooser[0].leftToChoose,
+      nextChooser: nextProps.nextChooser[0].nextChooser
+    })
   }
   
   handleClick = () => {
-
-    let nameArray = this.state.leftToChoose;
-        
-    let randomNumber = Math.floor(Math.random() * Math.floor(nameArray.length));
+    let nameArray = this.state.leftToChoose.slice();
+    let randomNumber = Math.floor(Math.random() * nameArray.length);
     let selectedChooser = nameArray.splice(randomNumber, 1);
     console.log(selectedChooser);
     
@@ -32,25 +40,47 @@ class Next extends Component {
     });
   }
   
+  conditionallyRenderContent = () => {
+    const movie = this.props.movie
+    if(this.state.isLoaded){
+      return (
+        <div>
+          <div className="card">
+            <h5>Left to Choose:</h5> {this.state.leftToChoose.map(function(chooser){
+              return (<li style={{listStyle: 'none'}}>{chooser}</li>)
+            })}
+          </div>
+  
+          <button type="button" onClick={this.handleClick}>Press!</button>
+          <div className="card">
+            <h1><span>{this.state.nextChooser}</span> is next!</h1>
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div className="container center">
+        <p>Loading chooser details...</p>
+        </div>
+      )
+    }
+  }
+  
+  
   render() {
     const { nextChooser } = this.props;
 
     return (
       <div>
-        <div className="card">
-          <h1>Left to Choose: {this.state.leftToChoose}</h1>
-        </div>
-
-        <button type="button" onClick={this.handleClick}>Press!</button>
-        <div className="card">
-          <h1><span>{this.state.nextChooser}</span> is next!</h1>
-        </div>
+        {this.conditionallyRenderContent()}
       </div>
     )
   }
 }
 
+
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
     nextChooser:  state.firestore.ordered.nextChooser
   }
