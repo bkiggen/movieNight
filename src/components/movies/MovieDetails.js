@@ -6,6 +6,8 @@ import { compose } from 'redux';
 import { Link } from 'react-router-dom';
 import MovieQuery from '../movies/MovieQuery';
 import moment from 'moment';
+import frog from '../../assets/img/frog.png'
+import tv from '../../assets/img/tv.png'
 
 class MovieDetails extends Component {
   constructor(props) {
@@ -85,7 +87,7 @@ class MovieDetails extends Component {
       } else {
         return (
           <div className="container center">
-          <p>Loading movie details...</p>
+            <img src={frog} className='frog'/>
           </div>
         )
       }
