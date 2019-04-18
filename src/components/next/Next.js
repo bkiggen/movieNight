@@ -45,14 +45,15 @@ class Next extends Component {
     if(this.state.isLoaded){
       return (
         <div>
-          <div className="card">
-            <h5>Left to Choose:</h5> {this.state.leftToChoose.map(function(chooser){
-              return (<li style={{listStyle: 'none'}}>{chooser}</li>)
+          <h5>Left to Choose:</h5>
+          <div className="card" style={{maxWidth: '500px', display: 'flex', margin: '0 auto', justifyContent: 'space-around', marginBottom: '20px'}}>
+             {this.state.leftToChoose.map(function(chooser){
+              return (<p style={{listStyle: 'none'}}>{chooser}</p>)
             })}
           </div>
 
           <button type="button" onClick={this.handleClick}>Press!</button>
-          <div className="card">
+          <div className="card" style={{maxWidth: '500px', margin: '0 auto'}}>
             <h1><span>{this.state.nextChooser}</span> is next!</h1>
           </div>
         </div>
