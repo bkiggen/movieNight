@@ -63,11 +63,11 @@ class MovieDetails extends Component {
           <div className="container section movie-details">
             <div className="card z-depth-0">
               <div className="card-content">
-              <span className="card-title">{this.state.title}</span>
+              <h1>{this.state.title}</h1>
               <p>Chosen by: {movie.chooser}</p>
               <p>Viewing Date: {moment.unix(movie.createdAt.seconds).format('dddd, MMMM Do, YYYY')}</p>
               </div>
-              <img src={`${this.state.image}`} />
+              <img src={`${this.state.image}`} style={{marginBottom: '20px'}}/>
               <div className="card-action grey lighten-4">
               <p><strong>Release Year: </strong>{movie.year}</p>
               <p><strong>Director: </strong> {this.state.director}</p>
