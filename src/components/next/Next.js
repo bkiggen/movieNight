@@ -3,15 +3,15 @@ import { updateNext } from '../../store/actions/movieActions';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
+import frog from '../../assets/img/frog.png'
 
-
-class Next extends Component {  
+class Next extends Component {
   state = {
       nextChooser: '',
       leftToChoose: [],
-      isLoaded: false, 
+      isLoaded: false,
   }
-  
+
   componentWillReceiveProps(nextProps){
     console.log(nextProps.nextChooser[0].leftToChoose);
     this.setState({
@@ -20,13 +20,13 @@ class Next extends Component {
       nextChooser: nextProps.nextChooser[0].nextChooser
     })
   }
-  
+
   handleClick = () => {
     let nameArray = this.state.leftToChoose.slice();
     let randomNumber = Math.floor(Math.random() * nameArray.length);
     let selectedChooser = nameArray.splice(randomNumber, 1);
     console.log(selectedChooser);
-    
+
     this.setState((previousState, currentProps) => {
       return {
         ...previousState,
@@ -39,7 +39,7 @@ class Next extends Component {
       leftToChoose: nameArray
     });
   }
-  
+
   conditionallyRenderContent = () => {
     const movie = this.props.movie
     if(this.state.isLoaded){
@@ -50,7 +50,7 @@ class Next extends Component {
               return (<li style={{listStyle: 'none'}}>{chooser}</li>)
             })}
           </div>
-  
+
           <button type="button" onClick={this.handleClick}>Press!</button>
           <div className="card">
             <h1><span>{this.state.nextChooser}</span> is next!</h1>
@@ -59,14 +59,14 @@ class Next extends Component {
       )
     } else {
       return (
-        <div className="container center">
-        <p>Loading chooser details...</p>
+        <div>
+          <img src={frog} className='frog'/>
         </div>
       )
     }
   }
-  
-  
+
+
   render() {
     const { nextChooser } = this.props;
 
@@ -100,4 +100,3 @@ export default compose(
     { collection: 'nextChooser' }
   ])
 )(Next);
-
