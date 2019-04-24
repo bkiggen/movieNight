@@ -6,6 +6,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import MovieDetails from './components/movies/MovieDetails';
 import CreateMovie from './components/movies/CreateMovie';
 import Next from './components/next/Next';
+import Splash from './components/dashboard/Splash';
 
 class App extends Component {
   render() {
@@ -14,7 +15,8 @@ class App extends Component {
         <div className="App">
           <Navbar/>
             <Switch>
-              <Route exact path="/" component={Dashboard} />
+              <Route exact path="/" component={Splash} />
+              <Route exact path="/archive" component={Dashboard} />
               <Route exact path="/create" component={CreateMovie} />
               <Route exact path="/movie/:id" component={MovieDetails} />
               <Route exact path="/next" component={Next} />

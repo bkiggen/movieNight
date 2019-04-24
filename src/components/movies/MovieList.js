@@ -3,11 +3,13 @@ import MovieSummary from './MovieSummary';
 import { Link } from 'react-router-dom';
 
 const MovieList = ({movies}) => {
+  const movieListStyle = { display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'};
 
   return (
     <div>
       <h1>Archive</h1>
-      <div className="movieList section" style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'}}>
+      <div className="movieList section" style={movieListStyle}>
+        {console.log(movies)}
         {movies && movies.map(movie => {
           return (
             <div>

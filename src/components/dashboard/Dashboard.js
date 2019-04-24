@@ -7,10 +7,10 @@ import { compose } from 'redux';
 
 class Dashboard extends Component{
 
-  
+
   render(){
     const { movies } = this.props;
-    
+
     return (
       <div className="dashboard container">
         <MovieList movies={movies}/>
@@ -21,6 +21,7 @@ class Dashboard extends Component{
 }
 
 const mapStateToProps = (state) => {
+
   return {
     movies: state.firestore.ordered.movies
   }

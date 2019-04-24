@@ -6,6 +6,7 @@ const NavLinks = () => {
     <ul className="right">
     <li><NavLink to="/next">Who's Next?</NavLink></li>
       <li><NavLink to="/create">Add Movie</NavLink></li>
+      <li><NavLink to="/archive">Archive</NavLink></li>
       <li><NavLink to="/" className="">Home</NavLink></li>
     </ul>
   )
