@@ -2,17 +2,42 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-import NextChooserDetail from '../next/NextChooserDetail';
-
+import frog from '../../assets/img/frog.png'
 
 class Splash extends Component{
+  state = {
+    nextChooser: '',
+    isLoaded: false
+  }
+
+  componentWillReceiveProps(nextProps){
+    console.log(nextProps);
+    this.setState({
+      isLoaded: true,
+      nextChooser: nextProps.nextChooser[0].nextChooser
+    })
+  }
+
+  conditionallyRenderContent = () => {
+    const nextChooser = this.state.nextChooser;
+    if(this.state.isLoaded){
+      return (
+        <h1>{this.state.nextChooser}</h1>
+      )
+    } else {
+      return (
+        <img src={frog} className='frog'/>
+      )
+    }
+  }
 
   render(){
-    const { nextChooser } = this.props;
+    const { nextChooser } = this.state.nextChooser;
 
     return (
-      <div className="dashboard container">
-        <NextChooserDetail nextChooser={nextChooser} />
+      <div className="dashboard container" style={{marginTop: '150px'}}>
+        <h4>Next Up...</h4>
+        {this.conditionallyRenderContent()}
       </div>
     );
   }
@@ -22,13 +47,13 @@ class Splash extends Component{
 const mapStateToProps = (state) => {
 
   return {
-    movies: state.firestore.ordered.nextChooser
+    nextChooser: state.firestore.ordered.nextChooser
   }
 }
 
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
-    { collection: 'nextChooser', orderBy: ['nextChooser', 'desc'] }
+    { collection: 'nextChooser' }
   ])
 )(Splash);

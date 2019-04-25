@@ -38,6 +38,7 @@ class Next extends Component {
       nextChooser: selectedChooser,
       leftToChoose: nameArray
     });
+    this.props.history.push('/')
   }
 
   conditionallyRenderContent = () => {
@@ -53,9 +54,7 @@ class Next extends Component {
           </div>
 
           <button type="button" onClick={this.handleClick}>Press!</button>
-          <div className="card" style={{maxWidth: '500px', margin: '0 auto'}}>
-            <h1><span>{this.state.nextChooser}</span> is next!</h1>
-          </div>
+
         </div>
       )
     } else {
@@ -101,3 +100,10 @@ export default compose(
     { collection: 'nextChooser' }
   ])
 )(Next);
+
+
+
+// <div className="card" style={{maxWidth: '500px', margin: '0 auto'}}>
+//   <h1><span>{this.state.nextChooser}</span> is next!</h1>
+// </div>
+//
