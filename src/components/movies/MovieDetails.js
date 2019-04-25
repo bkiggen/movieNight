@@ -50,7 +50,8 @@ class MovieDetails extends Component {
           rated: result.Rated,
           actors: result.Actors,
           plot: result.Plot,
-          country: result.Country
+          country: result.Country,
+          result: {...result}
         })
       }
     )
@@ -58,6 +59,8 @@ class MovieDetails extends Component {
 
     conditionallyRenderContent = () => {
       const movie = this.props.movie
+      const state = this.state;
+      console.log(state);
       if(this.state.isLoaded){
         return (
           <div className="container section movie-details">
@@ -69,16 +72,12 @@ class MovieDetails extends Component {
               </div>
               <img src={`${this.state.image}`} style={{marginBottom: '20px'}}/>
               <div className="card-action grey lighten-4">
-              <p><strong>Release Year: </strong>{movie.year}</p>
-              <p><strong>Director: </strong> {this.state.director}</p>
-              <p><strong>Actors: </strong> {this.state.actors}</p>
-              <p><strong>Genre: </strong>{this.state.genre}</p>
-              <p><strong>Runtime: </strong> {this.state.runtime}</p>
-              <p><strong>Writer(s): </strong> {this.state.writer}</p>
-              <p><strong>Rated: </strong>{this.state.rated}</p>
-              <p><strong>Plot Summary: </strong> {this.state.plot}</p>
-              <p><strong>Country: </strong> {this.state.country}</p>
 
+              {Object.keys(state.result).map(function(key){
+                if(typeof state.result[key] != 'object'){
+                  return (<p prop={key}><span style={{fontWeight: 'bolder'}}>{key}:</span> {state.result[key]}</p>)
+                }
+              })}
               <Link to="/">Home</Link>
               </div>
             </div>

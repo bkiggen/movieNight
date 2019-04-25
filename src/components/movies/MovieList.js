@@ -7,7 +7,7 @@ const MovieList = ({movies}) => {
 
   return (
     <div>
-      <h1>Archive</h1>
+
       <div className="movieList section" style={movieListStyle}>
         {console.log(movies)}
         {movies && movies.map(movie => {

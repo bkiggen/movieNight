@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 class CreateMovie extends Component {
     state = {
         title: '',
-        year: 0, 
+        year: 0,
         chooser: ''
     }
 
@@ -15,7 +15,7 @@ class CreateMovie extends Component {
         [e.target.id]: e.target.value
       })
     }
-    
+
     handleSubmit = (e) => {
       e.preventDefault();
       this.props.createMovie(this.state);
@@ -24,9 +24,9 @@ class CreateMovie extends Component {
 
     render() {
         return (
-            <div className="container">
-                <form onSubmit={this.handleSubmit} className="white">
-                    <h5 className="grey-text text-darken-3">Add Movie to Archive:</h5>
+            <div className="container" style={{marginTop: '150px'}}>
+                <form onSubmit={this.handleSubmit} className="white" style={{width: '400px', margin: '0 auto'}}>
+                    <h5 className="grey-text text-darken-3" style={{margin: '50px'}}>Add Movie to Archive:</h5>
                     <div className="input-field">
                         <label htmlFor="title">Title</label>
                         <input type="text" id="title" onChange={this.handleChange} />
@@ -39,9 +39,9 @@ class CreateMovie extends Component {
                         <label htmlFor="chooser">Chooser</label>
                         <input id="chooser" onChange={this.handleChange}></input>
                     </div>
-                    
+
                     <div className="input-field">
-                        <button className="btn pink lighten-1 z-depth-0">Add Movie</button>
+                        <button className="btn pink lighten-1 z-depth-0" style={{margin: '30px'}}>Add Movie</button>
                     </div>
                 </form>
             </div>
