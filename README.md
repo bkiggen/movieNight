@@ -16,7 +16,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ## Features to Add
 [] Search function to filter archive results
 [] Home page
-[] Push api elements to db
+[] Push api-returned elements to db
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
