@@ -74,7 +74,9 @@ class MovieDetails extends Component {
               <div className="card-action grey lighten-4">
 
               {Object.keys(state.result).map(function(key){
-                if(typeof state.result[key] != 'object'){
+                if(key === 'Website'){
+                  return (<p prop={key}><span style={{fontWeight: 'bolder'}}>{key}:</span> <a href={state.result[key]}>{state.result[key]}</a></p>)
+                } else if(typeof state.result[key] != 'object'){
                   return (<p prop={key}><span style={{fontWeight: 'bolder'}}>{key}:</span> {state.result[key]}</p>)
                 }
               })}

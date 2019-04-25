@@ -44,7 +44,7 @@ class Next extends Component {
     const movie = this.props.movie
     if(this.state.isLoaded){
       return (
-        <div>
+        <div style={{marginTop: '150px'}}>
           <h5>Left to Choose:</h5>
           <div className="card" style={{maxWidth: '500px', display: 'flex', margin: '0 auto', justifyContent: 'space-around', marginBottom: '20px'}}>
              {this.state.leftToChoose.map(function(chooser){
