@@ -42,14 +42,13 @@ class Next extends Component {
   }
 
   conditionallyRenderContent = () => {
-    const movie = this.props.movie
     if(this.state.isLoaded){
       return (
         <div style={{marginTop: '150px'}}>
           <h5>Left to Choose:</h5>
           <div className="card" style={{maxWidth: '500px', display: 'flex', margin: '0 auto', justifyContent: 'space-around', marginBottom: '20px'}}>
              {this.state.leftToChoose.map(function(chooser){
-              return (<p style={{listStyle: 'none'}}>{chooser}</p>)
+              return (<p style={{listStyle: 'none'}} key={chooser}>{chooser}</p>)
             })}
           </div>
 
@@ -60,7 +59,7 @@ class Next extends Component {
     } else {
       return (
         <div>
-          <img src={frog} className='frog'/>
+          <img src={frog} alt="frog" className='frog'/>
         </div>
       )
     }
@@ -68,8 +67,6 @@ class Next extends Component {
 
 
   render() {
-    const { nextChooser } = this.props;
-
     return (
       <div>
         {this.conditionallyRenderContent()}

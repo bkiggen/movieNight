@@ -1,5 +1,4 @@
 import React from 'react';
-import reel from '../../assets/img/reel.png';
 import tv from '../../assets/img/tv.png';
 
 const MovieSummary = ({movie}) => {

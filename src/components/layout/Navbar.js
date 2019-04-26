@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import NavLinks from './NavLinks';
 
 const Navbar = () => {
@@ -13,6 +12,3 @@ const Navbar = () => {
 }
 
 export default Navbar;
-
-
-// <Link to="/" className="logo">m</Link>

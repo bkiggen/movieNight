@@ -11,8 +11,8 @@ import 'firebase/auth';
     storageBucket: "movienight-d37b5.appspot.com",
     messagingSenderId: "1026029285619"
   };
-  
+
   firebase.initializeApp(config);
-  firebase.firestore().settings({ timestampsInSnapshots: true});
-  
+
+
   export default firebase;

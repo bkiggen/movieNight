@@ -6,14 +6,23 @@ import { compose } from 'redux';
 
 
 class Dashboard extends Component{
+  state = {
+    filterValue: ''
+  }
+  handleChange = (e) => {
+    this.setState({
+      filterValue: e.target.value
+    })
+  }
 
 
   render(){
     const { movies } = this.props;
-
     return (
       <div className="dashboard container">
-        <MovieList movies={movies}/>
+        <h1>Archive</h1>
+        <input onChange={this.handleChange} placeholder='Filter by Chooser' style={{width: '200px'}}></input>
+        <MovieList movies={movies} filterValue={this.state.filterValue}/>
       </div>
     );
   }
@@ -21,7 +30,6 @@ class Dashboard extends Component{
 }
 
 const mapStateToProps = (state) => {
-
   return {
     movies: state.firestore.ordered.movies
   }
