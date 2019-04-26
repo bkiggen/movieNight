@@ -22,7 +22,7 @@ class Splash extends Component{
     const nextChooser = this.state.nextChooser;
     if(this.state.isLoaded){
       return (
-        <h1>{this.state.nextChooser}</h1>
+        <h1>{this.state.nextChooser}&#39;s pick</h1>
       )
     } else {
       return (
@@ -36,7 +36,7 @@ class Splash extends Component{
 
     return (
       <div className="dashboard container" style={{marginTop: '150px'}}>
-        <h4>Next Up...</h4>
+        <h4>Coming soon...</h4>
         {this.conditionallyRenderContent()}
       </div>
     );
