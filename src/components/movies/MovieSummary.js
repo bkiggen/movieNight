@@ -9,7 +9,8 @@ const MovieSummary = ({movie}) => {
 
     <div className="card  z-depth-0 movie-summary" style={cardStyles}>
       <div className="card-content white-text text-darken-3" style={innerStyles}>
-        <p style={{fontSize: '1.5em', color: 'brown'}}>{movie.title}</p>
+        <p style={{fontSize: '130%', color: 'brown', width: '100%'}}>{movie.title}</p>
+        <p style={{fontSize: '1em', color: '#9D9D9C', fontStyle:'italic'}}>{movie.year}</p>
       </div>
     </div>
   )

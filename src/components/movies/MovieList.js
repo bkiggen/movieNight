@@ -9,7 +9,6 @@ const MovieList = ({movies}) => {
     <div>
 
       <div className="movieList section" style={movieListStyle}>
-        {console.log(movies)}
         {movies && movies.map(movie => {
           return (
             <div>
