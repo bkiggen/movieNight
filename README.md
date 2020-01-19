@@ -5,6 +5,8 @@ _This app tracks selections for movie night and allows users to select random mo
 
 ## Installation
 
+#### Visit the [live site](poisonedartfrog.com) or:
+
 * Download from [here](https://github.com/bkiggen/movieNight)
 * Run ```npm install``` in the command line
 * Run ```npm run start``` in the command line
