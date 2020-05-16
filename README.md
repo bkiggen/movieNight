@@ -5,7 +5,7 @@ _This app tracks selections for movie night and allows users to select random mo
 
 ## Installation
 
-#### Visit the [live site](https://poisonedartfrog.com) or:
+#### Visit the [live site](https://movienight-d37b5.firebaseapp.com/) or:
 
 * Download from [here](https://github.com/bkiggen/movieNight)
 * Run ```npm install``` 
@@ -14,11 +14,6 @@ _This app tracks selections for movie night and allows users to select random mo
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-## Features to Add
-[] Search function to filter archive results
-[] Home page
-[] Push api-returned items to db
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
